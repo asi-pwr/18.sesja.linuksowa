@@ -14,6 +14,8 @@ import Tickets from '@/slices/Tickets';
 import Agenda from '@/slices/agenda/Index';
 import CoC from '@/slices/CoC';
 import Head from 'next/head';
+import Organizers from '@/slices/Organizers';
+import { ORGANIZERS } from '@/assets/organizers/organizersData';
 
 const Main = () => {
   return (
@@ -27,6 +29,7 @@ const Main = () => {
       <PreviousEdition />
       <Tickets />
       <Map />
+      <Organizers organizersData={ORGANIZERS} />
       <Sponsorship />
       {config.SEND_MESSAGE_URL && (
         <Contact sendMessageUrl={config.SEND_MESSAGE_URL} />

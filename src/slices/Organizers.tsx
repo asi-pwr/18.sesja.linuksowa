@@ -6,6 +6,7 @@ import {
   VStack,
   useTheme,
   IconButton,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-export-i18n';
 import Image, { StaticImageData } from 'next/image';
@@ -26,31 +27,30 @@ const Organizer = ({ image, name, role }: OrganizerProps) => {
   return (
     <Flex zIndex="3">
       <Box margin="auto">
-        <Box w={300} h={330} position="relative" >
-          <Image
-            alt={`${name} image`}
-            // sizes="300px"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'top',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              width: 300,
-              height: 300,
-              border: '10px solid white',
-            }}
-            src={image}
-            //fill
-          />
-        </Box>
         <VStack
-          height="90px"
-          width="300px"
+          //height="300px"
+          //width="300px"
           padding="2"
+          minH="60vh"
           //background={theme.colors.primary}
         >
-          {' '}
-          <Text color={theme.colors.secondary}>{role}</Text>
+          <Box w={300} h={330} position="relative">
+            <Image
+              alt={`${name} image`}
+              // sizes="300px"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'top',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                width: 300,
+                height: 300,
+                border: '10px solid white',
+              }}
+              src={image}
+              //fill
+            />
+          </Box>{' '}
           <Heading
             margin="auto"
             textAlign="center"
@@ -59,6 +59,15 @@ const Organizer = ({ image, name, role }: OrganizerProps) => {
             color="whiteAlpha.900"
           >
             {name}
+          </Heading>
+          <Heading
+            margin="auto"
+            textAlign="center"
+            fontSize="3xl"
+            as="h3"
+            color={theme.colors.secondary}
+          >
+            {role}
           </Heading>
         </VStack>
       </Box>
@@ -100,10 +109,17 @@ const Organizers = ({
   const { t } = useTranslation('common');
 
   const [slider, setSlider] = React.useState<Slider | null>(null);
+  const top = useBreakpointValue({ base: '90%', md: '50%' });
+  const side = useBreakpointValue({ base: '90%', md: '10px' });
 
   if (!organizersData.length) return null;
   return (
-    <Box id="organizers" bg={theme.colors.primary} minH="40vh">
+    <Box
+      id="organizers"
+      bg={theme.colors.primary}
+      minH="40vh"
+      overflow="hidden"
+    >
       <Box
         display="flex"
         justifyContent="center"
@@ -116,7 +132,6 @@ const Organizers = ({
         overflow="hidden"
       >
         <IconButton
-          //margin="auto"
           aria-label="left-arrow"
           background={theme.colors.secondary}
           color="white"
@@ -124,28 +139,23 @@ const Organizers = ({
           position="relative"
           zIndex={2}
           onClick={() => slider?.slickPrev()}
-          
         >
           <BiLeftArrowAlt />
-        </IconButton>
-        <Heading
-         padding="0vh 5vh 0vh 5vh"
+        </IconButton><Heading
+          padding="0vh 5vh 0vh 5vh"
           //margin="auto"
           as="h2"
           color="whiteAlpha.900"
           fontSize={['3xl', '5xl', '7xl']}
         >
           {t('team')}
-        </Heading>
+        </Heading> 
         <IconButton
-       
-       // margin="auto"
           aria-label="right-arrow"
           background={theme.colors.secondary}
           color="white"
           borderRadius="full"
           position="relative"
-          
           zIndex={2}
           onClick={() => slider?.slickNext()}
         >
@@ -153,24 +163,37 @@ const Organizers = ({
         </IconButton>
       </Box>
       <Box
-        margin="auto"
-        maxW="1000px"
-        padding="10vh 0vh 10vh 0vh"
-        flexWrap="wrap"
+        //  display="flex"
         justifyContent="center"
-        gap="30px 30px"
+        width="100%"
+        //minHeight="30vh"
+        opacity="100%"
+        position="relative"
+        zIndex="2"
         alignItems="center"
+        overflow="hidden"
       >
-        <Slider {...settings} ref={(slider) => setSlider(slider)}>
-          {organizersData
-            .filter(
-              (organizer) =>
-                organizer.image && organizer.name && organizer.role,
-            )
-            .map((organizerData, index) => (
-              <Organizer key={index} {...organizerData} />
-            ))}
-        </Slider>
+        <Box
+          margin="auto"
+          maxW="1000px"
+          padding="10vh 0vh 10vh 0vh"
+          flexWrap="wrap"
+          justifyContent="center"
+          gap="30px 30px"
+          alignItems="center"
+        >
+          <Slider {...settings} ref={(slider) => setSlider(slider)}>
+            {organizersData
+              .filter(
+                (organizer) =>
+                  organizer.image && organizer.name && organizer.role,
+              )
+              .map((organizerData, index) => (
+                <Organizer key={index} {...organizerData} />
+              ))}
+          </Slider>
+        </Box>
+       
       </Box>
     </Box>
   );

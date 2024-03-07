@@ -5,46 +5,46 @@ export const ORGANIZERS: OrganizerProps[] = [
   {
     image: blankAvatar,
     name: 'Michał Korczak',
-    role: "Główny Organizator",
+    role: "Master of Ceremony",
   },
   {
     image: blankAvatar,
     name: 'Tomasz Świątek',
-    role: "Rola testowa",
+    role: "Prelection Sponsorship Manager",
   },
   {
     image: blankAvatar,
     name: 'Jakub Śliwka',
-    role: "Rola testowa",
+    role: "Human Resources and Communication",
   },
   {
     image: blankAvatar,
     name: 'Bartek Konat', 
-    role: "Rola testowa",
+    role: "Chief of Design",
   },
   {
     image: blankAvatar,
     name: 'Filip Pyra', 
-    role: "Rola testowa",
+    role: "Public Relations",
   },
   {
     image: blankAvatar,
     name: 'Jakub Bosak',  
-    role: "Rola testowa",
+    role: "Web development",
   },
   {
     image: blankAvatar,
     name: 'Przemysław Yaymontt',
-    role: "Rola testowa",
+    role: "Human Resources",
   },
   {
     image: blankAvatar,
     name: 'Jacek Poziemski',  
-    role: "Rola testowa",
+    role: "Human Resources and Communication",
   },
   {
     image: blankAvatar,
     name: 'Felix Zieliński',  
-    role: "Rola testowa",
+    role: "Web development",
   },
 ];
